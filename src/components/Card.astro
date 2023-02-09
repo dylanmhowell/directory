@@ -1,0 +1,23 @@
+---
+export interface Props {
+    city: string;
+    specialty: string;
+    photographer: string;
+}
+const { city, specialty, photographer } = Astro.props as Props;
+---
+
+<div class="card">
+    <h2>{city}</h2>
+    <p>{specialty} for {photographer}</p>
+</div>
+
+<style>
+    .card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+</style>

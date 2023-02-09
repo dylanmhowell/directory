@@ -1,0 +1,16 @@
+---
+import { supabase } from "../supabaseClient";
+import Card from "../components/Card.astro";
+
+let { data: directory, error } = await supabase
+  .from('directory')
+  .select('*')
+
+if (error) {
+  console.error(error);
+  throw error;
+};
+---
+{directory?.map((id) => (
+<Card city={id.city} specialty={id.specialty} photographer={id.photographer} />
+))}

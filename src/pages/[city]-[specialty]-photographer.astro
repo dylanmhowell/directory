@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"; 
+import { supabase } from "../supabaseClient";
+
+export async function getStaticPaths () {
+
+let { data: directory, error } = await supabase
+  .from('directory')
+  .select('*')
+
+if (error) {
+  console.error(error);
+  throw error;
+};
+
+const paths = directory?.map((id) => ({
+  params: {
+    city: id.city,
+    specialty: id.specialty,
+  },
+},
+));
+return paths;
+
+}
+---
+<BaseLayout />
+<h1> It Worked!</h1>
