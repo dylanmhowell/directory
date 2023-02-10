@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"; 
 import { supabase } from "../supabaseClient";
+import Card from "../components/Card.astro";
 
 export async function getStaticPaths () {
 
@@ -21,8 +22,12 @@ const paths = directory?.map((id) => ({
 },
 ));
 return paths;
-
 }
 ---
-<BaseLayout />
-<h1> It Worked!</h1>
+<BaseLayout>
+<h1 class="text-center">It Worked mofucka!</h1>
+
+</BaseLayout>
+
+<style>
+  </style>
