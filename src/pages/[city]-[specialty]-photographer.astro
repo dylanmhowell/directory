@@ -23,11 +23,42 @@ const paths = directory?.map((id) => ({
 ));
 return paths;
 }
+
+const { data: photogs, error } = await supabase.from('directory').select('*').eq('city', 'portland');
+interface data {
+  id: number
+  city: string
+  specialty: string
+  name: string
+}
 ---
 <BaseLayout>
 <h1 class="text-center">It Worked mofucka!</h1>
-
-</BaseLayout>
+<section class="photogs">
+	<div class="container">
+      {photogs?.map((id) => (
+           <ul>
+            <li><span class="text-xl">Photographer:</span> {id.photographer}</li>
+            <li><span class="text-xl">City:</span> {id.city}</li>
+            <li><span class="text-xl">Specialty:</span> {id.specialty}</li>
+          </ul>
+         ))
+       }
+       </div>
+      </section>
+    </BaseLayout>
 
 <style>
+      .photogs .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        padding: 0 20px;
+        margin: 30px auto;
+    }
+    @media (max-width: 500px) {
+        .photogs .container {
+            grid-template-columns: 1fr;
+        }
+    }
   </style>
