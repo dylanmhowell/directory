@@ -5,16 +5,9 @@ interface Props {
   title?: string | undefined;
   description?: string | undefined;
 }
-
-const { title = "The Photographer Directory", description = "Find the best photographer for your event." } = Astro.props;
 ---
 
 <meta charset="UTF-8" />
-<meta
-  name="description"
-  property="og:description"
-  content={description}
-/>
 <meta
   name="viewport"
   content="width=device-width"
@@ -23,7 +16,6 @@ const { title = "The Photographer Directory", description = "Find the best photo
   name="generator"
   content={Astro.generator}
 />
-<title>{title}</title>
 
 <link
   rel="icon"

@@ -1,0 +1,27 @@
+---
+import { supabase } from "../supabaseClient";
+import DirectoryListing from "@layouts/DirectoryListing.astro";
+import PhotogCard from "@components/PhotogCard.astro";
+
+let { data: directory, error } = await supabase.from("directory").select("photographer, domain, about, image").eq("city", "denver");
+if (error) {
+  console.error(error);
+  throw error;
+}
+---
+
+<DirectoryListing>
+  <h1 class="text-center">The Best Denver Boudoir Photographers</h1>
+  <container class="grid justify-center my-10 text-2xl">
+    {
+      directory?.map((id) => (
+        <PhotogCard
+          name={id.photographer}
+          domain={id.domain}
+          about={id.about}
+          image={id.image}
+        />
+      ))
+    }
+  </container>
+</DirectoryListing>
